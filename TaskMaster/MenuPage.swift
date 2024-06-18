@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct MenuPage: View {
+    @EnvironmentObject var tasksViewModel: TasksViewModel
+    
     var body: some View {
+        
         NavigationView {
             VStack(spacing: 20) {
                 HStack {
@@ -19,7 +22,7 @@ struct MenuPage: View {
                 Spacer()
                 navigationButton(destination: CompileIntoToDo(), label: "Compile Into Magic", color: .accentColor)
                 
-                navigationButton(destination: ToDoListMaker(), label: "Magic List", color: .accentColor)
+                navigationButton(destination: ToDoListMaker(tasks: tasksViewModel.tasksToDo), label: "Magic List", color: .accentColor)
                 
                 navigationButton(destination: TimeEstimator(), label: "Time Estimator", color: .accentColor)
                 
@@ -64,4 +67,5 @@ struct FilledButtonStyle: ButtonStyle {
 
 #Preview {
     MenuPage()
+        .environmentObject(TasksViewModel())
 }

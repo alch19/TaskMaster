@@ -1,11 +1,16 @@
 import SwiftUI
 
 struct ToDoListMaker: View {
+    var tasks: [String]
+
     var body: some View {
-        Text("IMPLEMENT TO DO LIST MAKER")
+        List(tasks, id: \.self) { task in
+            Text(task)
+        }
+        .navigationTitle("To-Do List")
     }
 }
 
 #Preview {
-    ToDoListMaker()
+    ToDoListMaker(tasks: ["Task 1", "Task 2"])
 }
