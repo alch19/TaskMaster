@@ -9,7 +9,7 @@ struct ContentView: View {
             if showSplash {
                 HomeLogoView()
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // shows the logo for 2 seconds
                             withAnimation {
                                 self.showSplash = false
                                 self.navigateToMenuPage = true
