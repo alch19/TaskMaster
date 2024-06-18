@@ -1,24 +1,31 @@
-//
-//  ContentView.swift
-//  TaskMaster
-//
-//  Created by Brian Farkas on 6/18/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showSplash = true
+    @State private var navigateToMenuPage = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            if showSplash {
+                HomeLogoView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                self.showSplash = false
+                                self.navigateToMenuPage = true
+                            }
+                        }
+                    }
+            } else if navigateToMenuPage {
+                MenuPage()
+            }
         }
-        .padding()
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

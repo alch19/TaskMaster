@@ -1,15 +1,65 @@
-//
-//  MenuPage.swift
-//  TaskMaster
-//
-//  Created by Brian Farkas on 6/18/24.
-//
-
 import SwiftUI
 
 struct MenuPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(spacing: 20) {
+                HStack {
+                    Text("Menu")
+                    Image(systemName: "line.horizontal.3.circle")
+                }
+                .font(.title)
+                .foregroundStyle(.tint)
+                .symbolRenderingMode(.multicolor)
+                
+                Divider()
+                    .background(Color.accentColor.opacity(0.8))
+                    .padding(.horizontal, 40)
+                
+                Spacer()
+                
+                navigationButton(destination: ToDoListMaker(), label: "Magic List", color: .accentColor)
+                
+                navigationButton(destination: CompileIntoToDo(), label: "Compile Into To-Do", color: .accentColor)
+                
+                navigationButton(destination: TimeEstimator(), label: "Time Estimator", color: .accentColor)
+                
+                Spacer()
+            }
+            .padding()
+            .navigationBarHidden(true)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+private func navigationButton<Destination: View>(destination: Destination, label: String, color: Color) -> some View {
+        return NavigationLink(destination: destination) {
+            Text(label)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(color)
+                .cornerRadius(10)
+        }
+        .buttonStyle(FilledButtonStyle(color: .accentColor))
+    }
+
+struct FilledButtonStyle: ButtonStyle {
+    var color: Color
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .foregroundColor(.white)
+            .background(
+                RoundedRectangle(cornerRadius:20)
+                    .fill(color)
+                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 10)
+            )
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            
+            
     }
 }
 

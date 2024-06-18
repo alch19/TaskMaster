@@ -1,8 +1,14 @@
-//
-//  HomeLogoView.swift
-//  TaskMaster
-//
-//  Created by Brian Farkas on 6/18/24.
-//
 
-import Foundation
+import SwiftUI
+
+struct HomeLogoView: View {
+    var body: some View {
+        Image("Logo")
+            .resizable()
+            .aspectRatio(1, contentMode: .fit)
+    }
+}
+
+#Preview {
+    HomeLogoView()
+}
