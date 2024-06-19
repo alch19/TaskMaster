@@ -20,6 +20,7 @@ struct ContentView: View {
                     }
             } else {
                 MenuPage()
+                    .environmentObject(TasksViewModel())
             }
         }
         .edgesIgnoringSafeArea(.all)

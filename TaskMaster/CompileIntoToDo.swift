@@ -3,10 +3,12 @@ import SwiftUI
 struct CompileIntoToDo: View {
     @EnvironmentObject var tasksViewModel: TasksViewModel
     @State private var userInput=""
+    @State private var thingsToAdd=""
     @FocusState private var isFocused: Bool
     @State private var tasksToDo: [String] = []
     @State private var showMenuPage=false
     @State private var showAlert=false
+    @State private var showAlert2=false
     @State private var navigateToToDoListMaker=false
     
     var body: some View {
@@ -20,7 +22,15 @@ struct CompileIntoToDo: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .focused($isFocused)
-            
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("List Created!"),
+                        message: Text("Your list is now in the Magic List"),
+                        dismissButton: .default(Text("OK"), action: {
+                            
+                        })
+                    )
+                }
             Button(action: {
                 compileTasks()
                 showAlert=true
@@ -30,10 +40,40 @@ struct CompileIntoToDo: View {
                     .padding()
                     .background(Color.accentColor)
                     .cornerRadius(20)
+                    .frame(maxWidth: 200)
             }
             .buttonStyle(FilledButtonStyle2(color: .accentColor))
             .padding()
             
+            Spacer()
+            
+            TextField("Add a single item", text: $thingsToAdd)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .focused($isFocused)
+            
+            Button(action: {
+                addTask()
+                showAlert2=true
+            }) {
+                Text("Submit")
+                    .foregroundStyle(.white)
+                    .padding()
+                    .background(Color.accentColor)
+                    .cornerRadius(20)
+                    .frame(maxWidth: 200)
+            }
+            .buttonStyle(FilledButtonStyle2(color: .accentColor))
+            .padding()
+            .alert(isPresented: $showAlert2) {
+                Alert(
+                    title: Text("\"\(thingsToAdd)\" Added"),
+                    message: Text("Check it out in the Magic List!"),
+                    dismissButton: .default(Text("OK"), action: {
+                        
+                    })
+                )
+            }
             
             Spacer()
         }
@@ -41,18 +81,10 @@ struct CompileIntoToDo: View {
         .onTapGesture {
             isFocused = false
         }
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("List Created!"),
-                message: Text("Your list is now in the Magic List"),
-                dismissButton: .default(Text("OK"), action: {
-                    navigateToToDoListMaker=true
-                })
-            )
-        }
         
         .navigationDestination(isPresented: $navigateToToDoListMaker) {
             ToDoListMaker(tasks: tasksViewModel.tasksToDo)
+                .environmentObject(tasksViewModel)
         }
         
         .navigationBarBackButtonHidden(true)
@@ -72,6 +104,10 @@ struct CompileIntoToDo: View {
         tasksViewModel.tasksToDo = userInput.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
            isFocused = false
        }
+    
+    private func addTask() {
+        tasksViewModel.tasksToDo.append(thingsToAdd)
+    }
     
 }
 
