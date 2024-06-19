@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct CompileIntoToDo: View {
     @EnvironmentObject var tasksViewModel: TasksViewModel
@@ -13,7 +14,7 @@ struct CompileIntoToDo: View {
     
     var body: some View {
         VStack {
-            Text("Compile Into Magic")
+            Text("Compile Into List")
                 .font(.largeTitle)
                 .padding()
                 .bold()

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct TimeEstimator: View {
     var body: some View {

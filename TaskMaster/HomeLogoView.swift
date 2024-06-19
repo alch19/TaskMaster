@@ -1,5 +1,5 @@
-
 import SwiftUI
+import SwiftData
 
 struct HomeLogoView: View {
     var body: some View {

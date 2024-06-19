@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct MenuPage: View {
     @EnvironmentObject var tasksViewModel: TasksViewModel
@@ -20,9 +21,9 @@ struct MenuPage: View {
                     .padding(.horizontal, 40)
                 
                 Spacer()
-                navigationButton(destination: CompileIntoToDo().environmentObject(tasksViewModel), label: "Compile Into Magic", color: .accentColor)
+                navigationButton(destination: CompileIntoToDo().environmentObject(tasksViewModel), label: "Compile Into List", color: .accentColor)
                 
-                navigationButton(destination: ToDoListMaker(tasks: tasksViewModel.tasksToDo), label: "Magic List", color: .accentColor)
+                navigationButton(destination: ToDoListMaker(tasks: tasksViewModel.tasksToDo), label: "To-Do List", color: .accentColor)
                 
                 navigationButton(destination: TimeEstimator(), label: "Time Estimator", color: .accentColor)
                 
