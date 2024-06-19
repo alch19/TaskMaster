@@ -11,94 +11,109 @@ struct CompileIntoToDo: View {
     @State private var showAlert=false
     @State private var showAlert2=false
     @State private var navigateToToDoListMaker=false
+    @State private var showLabel1=false
     
     var body: some View {
-        VStack {
-            Text("Compile Into List")
-                .font(.largeTitle)
+        ZStack(alignment: .bottom) {
+            VStack {
+                Divider()
+                Text("Compile Into List")
+                    .font(.largeTitle)
+                    .padding()
+                    .bold()
+                Divider()
+                TextField("Enter Your Tasks. Seperate them with commas", text: $userInput)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .focused($isFocused)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("List Created!"),
+                            message: Text("Your list is now in the Magic List"),
+                            dismissButton: .default(Text("OK"), action: {
+                                
+                            })
+                        )
+                    }
+                Button(action: {
+                    compileTasks()
+                    showAlert=true
+                    showLabel1=true
+                }) {
+                    Text("Turn This Into A List")
+                        .foregroundStyle(.white)
+                        .padding()
+                        .background(Color.accentColor)
+                        .cornerRadius(20)
+                        .padding(.horizontal, 8)
+                }
+                .buttonStyle(FilledButtonStyle2(color: .accentColor))
                 .padding()
-                .bold()
-            
-            TextField("Enter Your Tasks. Seperate them with commas", text: $userInput)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Spacer()
+                
+                TextField("Add a single item", text: $thingsToAdd)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .focused($isFocused)
+                
+                Button(action: {
+                    addTask()
+                    showAlert2=true
+                }) {
+                    Text("Submit")
+                        .foregroundStyle(.white)
+                        .padding()
+                        .background(Color.accentColor)
+                        .cornerRadius(20)
+                        .padding(.horizontal, 60)
+                }
+                .buttonStyle(FilledButtonStyle2(color: .accentColor))
                 .padding()
-                .focused($isFocused)
-                .alert(isPresented: $showAlert) {
+                .alert(isPresented: $showAlert2) {
                     Alert(
-                        title: Text("List Created!"),
-                        message: Text("Your list is now in the Magic List"),
+                        title: Text("\"\(thingsToAdd)\" Added"),
+                        message: Text("Check it out in the Magic List!"),
                         dismissButton: .default(Text("OK"), action: {
                             
                         })
                     )
                 }
-            Button(action: {
-                compileTasks()
-                showAlert=true
-            }) {
-                Text("Turn This Into A List")
-                    .foregroundStyle(.white)
-                    .padding()
-                    .background(Color.accentColor)
-                    .cornerRadius(20)
-                    .frame(maxWidth: 200)
+                Spacer()
             }
-            .buttonStyle(FilledButtonStyle2(color: .accentColor))
-            .padding()
-            
-            Spacer()
-            
-            TextField("Add a single item", text: $thingsToAdd)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .focused($isFocused)
-            
-            Button(action: {
-                addTask()
-                showAlert2=true
-            }) {
-                Text("Submit")
-                    .foregroundStyle(.white)
+            if(showLabel1) {
+                Text("List Created!")
+                    .multilineTextAlignment(.leading)
                     .padding()
-                    .background(Color.accentColor)
-                    .cornerRadius(20)
-                    .frame(maxWidth: 200)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.secondary.opacity(0.1))
+                    .cornerRadius(8)
+                    .font(.title)
             }
-            .buttonStyle(FilledButtonStyle2(color: .accentColor))
+            
+        }
+            .edgesIgnoringSafeArea(.bottom)
             .padding()
-            .alert(isPresented: $showAlert2) {
-                Alert(
-                    title: Text("\"\(thingsToAdd)\" Added"),
-                    message: Text("Check it out in the Magic List!"),
-                    dismissButton: .default(Text("OK"), action: {
-                        
+            .onTapGesture {
+                isFocused = false
+            }
+            
+            .navigationDestination(isPresented: $navigateToToDoListMaker) {
+                ToDoListMaker(tasks: tasksViewModel.tasksToDo)
+                    .environmentObject(tasksViewModel)
+            }
+            
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action: {
+                        showMenuPage=true
+                    }) {
+                        HStack {
+                            Image(systemName: "line.horizontal.3.circle")
+                        }
+                        .font(.largeTitle)
                     })
-                )
-            }
-            
-            Spacer()
-        }
-        .padding()
-        .onTapGesture {
-            isFocused = false
-        }
-        
-        .navigationDestination(isPresented: $navigateToToDoListMaker) {
-            ToDoListMaker(tasks: tasksViewModel.tasksToDo)
-                .environmentObject(tasksViewModel)
-        }
-        
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-                    showMenuPage=true
-                }) {
-                    HStack {
-                        Image(systemName: "line.horizontal.3.circle")
-                    }
-                    .font(.largeTitle)
-                })
-                .fullScreenCover(isPresented: $showMenuPage) {
-                    MenuPage()
+                    .fullScreenCover(isPresented: $showMenuPage) {
+                        MenuPage()
                 }
     }
     private func compileTasks() {

@@ -8,11 +8,11 @@ struct TimeEstimator: View {
 
         var body: some View {
             VStack(spacing: 20) {
+                Divider()
                 Text("Time Estimator")
                     .font(.largeTitle)
-                    .padding()
                     .bold()
-                    .padding()
+                Divider()
                 Spacer()
                 TextField("Enter your task description", text: $userInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())

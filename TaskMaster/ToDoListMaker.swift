@@ -8,17 +8,21 @@ struct ToDoListMaker: View {
     
     var body: some View {
         VStack {
-            Text("Compile Into List")
+            Divider()
+            Text("To-Do List")
                 .font(.largeTitle)
-                .padding()
                 .bold()
+            Divider()
+                .padding(.bottom, 100)
             Spacer()
             if tasksViewModel.tasksToDo.isEmpty {
+                
                 Text("You're out of tasks!")
                     .font(.largeTitle)
                     .foregroundColor(.accentColor)
                     .padding()
                     .bold()
+                Spacer()
                 Spacer()
             }
             else {

@@ -8,6 +8,10 @@ struct MenuPage: View {
         
         NavigationView {
             VStack(spacing: 20) {
+                Text("TaskMaster")
+                    .font(.largeTitle)
+                    .foregroundStyle(.mint)
+                Divider()
                 HStack {
                     Text("Menu")
                     Image(systemName: "line.horizontal.3.circle")
@@ -15,11 +19,7 @@ struct MenuPage: View {
                 .font(.title)
                 .foregroundStyle(.tint)
                 .symbolRenderingMode(.multicolor)
-                
                 Divider()
-                    .background(Color.accentColor.opacity(0.8))
-                    .padding(.horizontal, 40)
-                
                 Spacer()
                 navigationButton(destination: CompileIntoToDo().environmentObject(tasksViewModel), label: "Compile Into List", color: .accentColor)
                 
@@ -27,6 +27,7 @@ struct MenuPage: View {
                 
                 navigationButton(destination: TimeEstimator(), label: "Time Estimator", color: .accentColor)
                 
+                Spacer()
                 Spacer()
             }
             .padding()
@@ -58,7 +59,7 @@ struct FilledButtonStyle: ButtonStyle {
             .background(
                 RoundedRectangle(cornerRadius:20)
                     .fill(color)
-                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 10)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 10)
             )
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
             
