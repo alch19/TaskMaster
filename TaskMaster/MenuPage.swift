@@ -4,6 +4,10 @@ import SwiftData
 struct MenuPage: View {
     @EnvironmentObject var tasksViewModel: TasksViewModel
 
+    /*var gradient: LinearGradient {
+        LinearGradient(gradient: Gradient(colors: [Color(red: 0.160, green: 0.180, blue: 0.250), Color(red: 0.650, green: 0.660, blue: 0.710)]), startPoint: .top, endPoint: .bottom)
+    }*/
+    
     var body: some View {
         
         NavigationView {
@@ -41,9 +45,9 @@ private func navigationButton<Destination: View>(destination: Destination, label
         return NavigationLink(destination: destination) {
             Text(label)
                 .foregroundColor(.white)
+                .font(.title)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(color)
                 .cornerRadius(10)
         }
         .buttonStyle(FilledButtonStyle(color: .accentColor))
@@ -54,10 +58,10 @@ struct FilledButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
-            .foregroundColor(.white)
+            .padding(.top, 5)
+            .padding(.bottom, 5)
             .background(
-                RoundedRectangle(cornerRadius:20)
+                RoundedRectangle(cornerRadius:15)
                     .fill(color)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 10)
             )

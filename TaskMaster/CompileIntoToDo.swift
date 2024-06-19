@@ -12,7 +12,8 @@ struct CompileIntoToDo: View {
     @State private var showAlert2=false
     @State private var navigateToToDoListMaker=false
     @State private var showLabel1=false
-    
+    @State private var alertTitle2=""
+    @State private var alertMessage2=""
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -35,6 +36,7 @@ struct CompileIntoToDo: View {
                             })
                         )
                     }
+                
                 Button(action: {
                     compileTasks()
                     showAlert=true
@@ -43,7 +45,6 @@ struct CompileIntoToDo: View {
                     Text("Turn This Into A List")
                         .foregroundStyle(.white)
                         .padding()
-                        .background(Color.accentColor)
                         .cornerRadius(20)
                         .padding(.horizontal, 8)
                 }
@@ -58,13 +59,21 @@ struct CompileIntoToDo: View {
                     .focused($isFocused)
                 
                 Button(action: {
-                    addTask()
-                    showAlert2=true
+                    if !thingsToAdd.isEmpty {
+                        addTask()
+                        alertTitle2="\"\(thingsToAdd)\" Added"
+                        alertMessage2="Check it out in the Magic List!"
+                        showAlert2=true
+                    } else {
+                        alertTitle2="Error"
+                        alertMessage2="Please enter an item"
+                        showAlert2=true
+                    }
+                
                 }) {
                     Text("Submit")
                         .foregroundStyle(.white)
                         .padding()
-                        .background(Color.accentColor)
                         .cornerRadius(20)
                         .padding(.horizontal, 60)
                 }
@@ -72,8 +81,8 @@ struct CompileIntoToDo: View {
                 .padding()
                 .alert(isPresented: $showAlert2) {
                     Alert(
-                        title: Text("\"\(thingsToAdd)\" Added"),
-                        message: Text("Check it out in the Magic List!"),
+                        title: Text(alertTitle2),
+                        message: Text(alertMessage2),
                         dismissButton: .default(Text("OK"), action: {
                             
                         })

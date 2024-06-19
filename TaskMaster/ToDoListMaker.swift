@@ -9,14 +9,13 @@ struct ToDoListMaker: View {
     var body: some View {
         VStack {
             Divider()
+                .padding(.top,10)
             Text("To-Do List")
                 .font(.largeTitle)
                 .bold()
             Divider()
-                .padding(.bottom, 100)
-            Spacer()
             if tasksViewModel.tasksToDo.isEmpty {
-                
+                Spacer()
                 Text("You're out of tasks!")
                     .font(.largeTitle)
                     .foregroundColor(.accentColor)
@@ -45,7 +44,6 @@ struct ToDoListMaker: View {
                 Image(systemName: "line.horizontal.3.circle")
             }
             .font(.largeTitle)
-            
         })
         .fullScreenCover(isPresented: $showMenuPage) {
             MenuPage()

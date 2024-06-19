@@ -3,9 +3,9 @@ import SwiftData
 
 struct TimeEstimator: View {
     @State private var userInput: String = ""
-        @State private var estimatedTime: Int?
+    @State private var estimatedTime: Int?
         let estimator = TaskTimeEstimator()
-
+    @State private var showMenuPage=false
         var body: some View {
             VStack(spacing: 20) {
                 Divider()
@@ -47,6 +47,18 @@ struct TimeEstimator: View {
                 Spacer()
             }
             .padding()
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action: {
+                        showMenuPage=true
+                    }) {
+                        HStack {
+                            Image(systemName: "line.horizontal.3.circle")
+                        }
+                        .font(.largeTitle)
+                    })
+                    .fullScreenCover(isPresented: $showMenuPage) {
+                        MenuPage()
+                }
         }
 }
 
