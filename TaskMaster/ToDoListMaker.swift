@@ -8,15 +8,20 @@ struct ToDoListMaker: View {
     
     var body: some View {
         VStack {
+            Text("Compile Into List")
+                .font(.largeTitle)
+                .padding()
+                .bold()
+            Spacer()
             if tasksViewModel.tasksToDo.isEmpty {
                 Text("You're out of tasks!")
                     .font(.largeTitle)
                     .foregroundColor(.accentColor)
                     .padding()
                     .bold()
+                Spacer()
             }
             else {
-                Spacer()
                 List {
                     ForEach(tasksViewModel.tasksToDo, id: \.self) { task in
                         Text(task)
@@ -27,7 +32,7 @@ struct ToDoListMaker: View {
                 .background(.clear)
             }
         }
-        .navigationTitle("To-Do List")
+        
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             showMenuPage=true
