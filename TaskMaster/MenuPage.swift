@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MenuPage: View {
     @EnvironmentObject var tasksViewModel: TasksViewModel
-    
+
     var body: some View {
         
         NavigationView {
@@ -20,7 +20,7 @@ struct MenuPage: View {
                     .padding(.horizontal, 40)
                 
                 Spacer()
-                navigationButton(destination: CompileIntoToDo(), label: "Compile Into Magic", color: .accentColor)
+                navigationButton(destination: CompileIntoToDo().environmentObject(tasksViewModel), label: "Compile Into Magic", color: .accentColor)
                 
                 navigationButton(destination: ToDoListMaker(tasks: tasksViewModel.tasksToDo), label: "Magic List", color: .accentColor)
                 
@@ -65,7 +65,9 @@ struct FilledButtonStyle: ButtonStyle {
     }
 }
 
-#Preview {
-    MenuPage()
-        .environmentObject(TasksViewModel())
+struct MenuPage_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuPage()
+            .environmentObject(TasksViewModel())
+    }
 }

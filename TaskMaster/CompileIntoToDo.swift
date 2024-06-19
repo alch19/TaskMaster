@@ -31,7 +31,9 @@ struct CompileIntoToDo: View {
                     .background(Color.accentColor)
                     .cornerRadius(20)
             }
+            .buttonStyle(FilledButtonStyle2(color: .accentColor))
             .padding()
+            
             
             Spacer()
         }
@@ -54,12 +56,13 @@ struct CompileIntoToDo: View {
         }
         
         .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading: Button(action: {
+        .navigationBarItems(leading: Button(action: {
                     showMenuPage=true
                 }) {
                     HStack {
                         Image(systemName: "line.horizontal.3.circle")
                     }
+                    .font(.largeTitle)
                 })
                 .fullScreenCover(isPresented: $showMenuPage) {
                     MenuPage()
@@ -72,9 +75,27 @@ struct CompileIntoToDo: View {
     
 }
 
-#Preview {
-    NavigationStack {
+struct CompileIntoToDo_Previews: PreviewProvider {
+    static var previews: some View {
         CompileIntoToDo()
             .environmentObject(TasksViewModel())
+    }
+}
+
+struct FilledButtonStyle2: ButtonStyle {
+    var color: Color
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            
+            .foregroundColor(.white)
+            .background(
+                RoundedRectangle(cornerRadius:20)
+                    .fill(color)
+                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 10)
+            )
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            
+            
     }
 }

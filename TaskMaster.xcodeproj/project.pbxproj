@@ -110,10 +110,10 @@
 				1316AFF72C2184B30055DE3B /* ContentView.swift */,
 				1316B01F2C2186220055DE3B /* HomeLogoView.swift */,
 				1316B0232C2186660055DE3B /* MenuPage.swift */,
-				1316B0252C2186770055DE3B /* ToDoListMaker.swift */,
-				1316B02D2C22364C0055DE3B /* TasksViewModel.swift */,
 				1316B0272C21868D0055DE3B /* CompileIntoToDo.swift */,
+				1316B0252C2186770055DE3B /* ToDoListMaker.swift */,
 				1316B0292C2186980055DE3B /* TimeEstimator.swift */,
+				1316B02D2C22364C0055DE3B /* TasksViewModel.swift */,
 				1316AFF92C2184B50055DE3B /* Assets.xcassets */,
 				1316AFFB2C2184B50055DE3B /* Preview Content */,
 			);

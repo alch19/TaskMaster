@@ -1,17 +1,14 @@
-//
-//  TaskMasterApp.swift
-//  TaskMaster
-//
-//  Created by Brian Farkas on 6/18/24.
-//
-
 import SwiftUI
 
 @main
 struct TaskMasterApp: App {
+    @StateObject private var tasksViewModel = TasksViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(tasksViewModel)
         }
     }
 }
+
