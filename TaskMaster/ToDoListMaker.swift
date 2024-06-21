@@ -14,6 +14,7 @@ struct ToDoListMaker: View {
                 .font(.largeTitle)
                 .bold()
             Divider()
+            
             if tasksViewModel.tasksToDo.isEmpty {
                 Spacer()
                 Text("You're out of tasks!")
@@ -33,9 +34,9 @@ struct ToDoListMaker: View {
                 }
                 .listStyle(PlainListStyle())
                 .background(.clear)
+                .padding(.bottom, 10)
             }
         }
-        
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             showMenuPage=true

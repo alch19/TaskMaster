@@ -20,6 +20,7 @@
 		1316B0282C21868D0055DE3B /* CompileIntoToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1316B0272C21868D0055DE3B /* CompileIntoToDo.swift */; };
 		1316B02A2C2186980055DE3B /* TimeEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1316B0292C2186980055DE3B /* TimeEstimator.swift */; };
 		1316B02E2C22364C0055DE3B /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1316B02D2C22364C0055DE3B /* TasksViewModel.swift */; };
+		13447F5E2C255230001D533D /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13447F5D2C255230001D533D /* KeyboardResponder.swift */; };
 		1361E9182C22BDD700E4AD01 /* TaskTimeEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1361E9172C22BDD700E4AD01 /* TaskTimeEstimator.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		1316B0272C21868D0055DE3B /* CompileIntoToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileIntoToDo.swift; sourceTree = "<group>"; };
 		1316B0292C2186980055DE3B /* TimeEstimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEstimator.swift; sourceTree = "<group>"; };
 		1316B02D2C22364C0055DE3B /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		13447F5D2C255230001D533D /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		1361E9172C22BDD700E4AD01 /* TaskTimeEstimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeEstimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				1316B01F2C2186220055DE3B /* HomeLogoView.swift */,
 				1316B0232C2186660055DE3B /* MenuPage.swift */,
 				1316B0272C21868D0055DE3B /* CompileIntoToDo.swift */,
+				13447F5D2C255230001D533D /* KeyboardResponder.swift */,
 				1316B0252C2186770055DE3B /* ToDoListMaker.swift */,
 				1316B0292C2186980055DE3B /* TimeEstimator.swift */,
 				1316B02D2C22364C0055DE3B /* TasksViewModel.swift */,
@@ -281,6 +284,7 @@
 				1316B0262C2186770055DE3B /* ToDoListMaker.swift in Sources */,
 				1316B02E2C22364C0055DE3B /* TasksViewModel.swift in Sources */,
 				1316B0202C2186220055DE3B /* HomeLogoView.swift in Sources */,
+				13447F5E2C255230001D533D /* KeyboardResponder.swift in Sources */,
 				1316B02A2C2186980055DE3B /* TimeEstimator.swift in Sources */,
 				1361E9182C22BDD700E4AD01 /* TaskTimeEstimator.swift in Sources */,
 				1316AFF82C2184B30055DE3B /* ContentView.swift in Sources */,
